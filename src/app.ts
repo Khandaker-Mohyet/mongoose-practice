@@ -63,6 +63,18 @@ app.get('/notes', async (req:Request, res:Response)=>{
     })
 })
 
+app.get('/notes/:id', async (req:Request, res:Response)=>{
+
+    const id = req.params.id
+    const notes = await Note.findOne({_id:id})
+
+    res.status(201).json({
+        success: true,
+        message: "Note created successfully",
+        notes
+    })
+})
+
 
 app.get('/', (req:Request, res:Response)=>{
     res.send("welcome to Khendaker Mohyet work station")
