@@ -4,9 +4,17 @@ import { model, Schema } from 'mongoose';
 const app:Application = express()
 
 const noteSchema = new Schema({
-    title: String,
-    contact: String,
-    price: Number
+    title: {type: String, require: true, trim: true},
+    contact: {type: String, default:""},
+    category:{
+        type: String,
+        enum:["person", "work", "study", "other"],
+        default: "personal"
+    },
+    pinned:{
+        type:Boolean,
+        default: false
+    }
 })
 
 const Note = model("Note", noteSchema)
@@ -14,7 +22,8 @@ const Note = model("Note", noteSchema)
 app.post('/create-note', async (req:Request, res:Response)=>{
     const myNote = new Note({
         title: "Learning Mongoose",
-        contact: "I am learning MOngoose"
+        contact: "I am learning MOngoose",
+        price:100
     })
 
     await myNote.save()
