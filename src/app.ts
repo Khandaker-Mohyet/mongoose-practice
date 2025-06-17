@@ -11,7 +11,20 @@ const noteSchema = new Schema({
 
 const Note = model("Note", noteSchema)
 
+app.post('/create-note', async (req:Request, res:Response)=>{
+    const myNote = new Note({
+        title: "Learning Mongoose",
+        contact: "I am learning MOngoose"
+    })
 
+    await myNote.save()
+
+    res.status(201).json({
+        success: true,
+        message: "Note created successfully",
+        note: myNote
+    })
+})
 
 
 app.get('/', (req:Request, res:Response)=>{
