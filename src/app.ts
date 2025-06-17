@@ -50,8 +50,6 @@ app.post('/notes/create-note', async (req:Request, res:Response)=>{
     })
 })
 
-
-
 app.get('/notes', async (req:Request, res:Response)=>{
 
     const notes = await Note.find()
@@ -74,6 +72,22 @@ app.get('/notes/:id', async (req:Request, res:Response)=>{
         notes
     })
 })
+
+app.patch('/notes/:id', async (req:Request, res:Response)=>{
+
+    const id = req.params.id
+    const body= req.body
+    // const notes = await Note.findByIdAndUpdate(id,body,{new: true})
+    // const notes = await Note.updateOne({_id:id},body,{new: true})
+    const notes = await Note.findOneAndUpdate({_id:id},body,{new: true})
+
+    res.status(201).json({
+        success: true,
+        message: "Note updated successfully",
+        notes
+    })
+})
+
 
 
 app.get('/', (req:Request, res:Response)=>{
