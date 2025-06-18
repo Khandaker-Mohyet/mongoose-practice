@@ -1,5 +1,4 @@
 import express, { Application, Request, Response } from 'express';
-import { model, Schema } from 'mongoose';
 import { notesRouters } from './app/controllers/note.controller';
 import { userRoute } from './app/controllers/user.controller';
 
@@ -9,7 +8,7 @@ app.use(express.json())
 
 
 app.use("/notes", notesRouters)
-app.use("/user", userRoute)
+app.use("/users", userRoute)
 
 
 

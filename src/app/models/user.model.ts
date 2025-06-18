@@ -2,7 +2,8 @@ import { model, Schema } from "mongoose";
 import { IUser } from "../interfaces/user.interface";
 
 
-const usersSchema = new Schema<IUser>({
+const usersSchema = new Schema<IUser>(
+    {
 firstName:{
     type: String,
     required: true,
@@ -28,6 +29,10 @@ role:{
     default: 'user'
 }
 
-})
+},
+{
+    timestamps: true
+}
+)
 
 export const User = model("user", usersSchema)
