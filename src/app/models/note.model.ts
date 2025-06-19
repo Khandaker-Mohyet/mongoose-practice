@@ -1,9 +1,10 @@
 import { model, Schema } from "mongoose"
+import { INotes } from "../interfaces/notes.interfaces"
 
-const noteSchema = new Schema(
+const noteSchema = new Schema<INotes>(
     {
         title: { type: String, require: true, trim: true },
-        contact: { type: String, default: "" },
+        content: { type: String, default: "" },
         category: {
             type: String,
             enum: ["person", "work", "study", "other"],
@@ -16,6 +17,11 @@ const noteSchema = new Schema(
         tags: {
             label: { type: String, require: true },
             color: { type: String, default: 'Green' }
+        },
+        userId:{
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
         }
     },
     {

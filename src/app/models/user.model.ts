@@ -40,6 +40,11 @@ const usersSchema = new Schema<IUser>(
                 message:"Role is not valid. got {value} role"
             },
             default: 'user'
+        },
+        address:{
+            city: {type: String},
+            street: {type: String},
+            zip:{type:Number}
         }
 
     },
